@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SimuWeb — bikin website di dalam website</title>
+<meta name="description" content="Workspace mini di browser: bikin file, edit kode, lihat hasilnya langsung, lalu ekspor ke GitHub.">
+<meta name="theme-color" content="#12141a">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2312141a'/%3E%3Crect x='8' y='14' width='48' height='36' rx='6' fill='none' stroke='%23ffb547' stroke-width='4'/%3E%3Cpath d='M8 24h48' stroke='%23ffb547' stroke-width='4'/%3E%3Cpath d='M26 32l-5 5 5 5M38 32l5 5-5 5' fill='none' stroke='%234cd7c0' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-pane="code">
+
+<header class="top">
+  <div class="brand">
+    <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#1f232d"/><rect x="8" y="14" width="48" height="36" rx="6" fill="none" stroke="#ffb547" stroke-width="4"/><path d="M8 24h48" stroke="#ffb547" stroke-width="4"/><path d="M26 32l-5 5 5 5M38 32l5 5-5 5" fill="none" stroke="#4cd7c0" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <b>SimuWeb</b><span class="tagline">website di dalam website</span>
+  </div>
+  <div class="acts">
+    <button id="btnNew" class="btn ghost">Template baru</button>
+    <button id="btnImport" class="btn ghost">Impor file</button>
+    <button id="btnExport" class="btn">Ekspor ZIP</button>
+    <input type="file" id="fileIn" multiple hidden>
+  </div>
+</header>
+
+<main class="ws">
+  <aside class="pane files" data-p="files">
+    <div class="ph"><span>Penjelajah</span><div><button id="addFile">+ File</button><button id="addDir">+ Folder</button></div></div>
+    <div id="tree" class="tree"></div>
+  </aside>
+
+  <section class="pane code" data-p="code">
+    <div id="tabs" class="tabs"></div>
+    <div class="ed">
+      <pre id="gut" class="gut" aria-hidden="true">1</pre>
+      <textarea id="ta" spellcheck="false" autocapitalize="off" autocomplete="off" wrap="off" aria-label="Editor kode"></textarea>
+    </div>
+    <div id="empty" class="empty"><div><b>Workspace kosong</b><p>Pilih file di Penjelajah atau bikin file baru.</p></div></div>
+  </section>
+
+  <section class="pane prev" data-p="prev">
+    <div class="ph"><span id="pvPath">index.html</span>
+      <div><button data-w="100%" class="on">Desktop</button><button data-w="390px">HP</button><button id="pvRefresh" title="Muat ulang">↻</button><button id="pvOpen">Tab baru</button></div>
+    </div>
+    <div class="frameWrap"><iframe id="frame" sandbox="allow-scripts allow-modals allow-forms" title="Pratinjau website"></iframe></div>
+  </section>
+</main>
+
+<footer class="bar"><span id="stFile"></span><span id="stInfo"></span><span id="stSave">Tersimpan</span></footer>
+
+<nav class="mob">
+  <button data-go="files">File</button><button data-go="code" class="on">Kode</button><button data-go="prev">Hasil</button>
+</nav>
+
+<div id="modal" class="modal" hidden>
+  <form id="mForm" class="card" autocomplete="off">
+    <h3 id="mTitle"></h3><p id="mMsg"></p>
+    <input id="mIn" type="text" spellcheck="false">
+    <div class="row2"><button type="button" id="mNo" class="btn ghost">Batal</button><button type="submit" id="mOk" class="btn">OK</button></div>
+  </form>
+</div>
+<div id="toast" class="toast"></div>
+
+<script src="assets/js/fs.js"></script>
+<script src="assets/js/zip.js"></script>
+<script src="assets/js/preview.js"></script>
+<script src="assets/js/starter.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
